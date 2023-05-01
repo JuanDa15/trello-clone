@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
+import { BoardsComponent } from './pages/boards/boards.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
         redirectTo: 'login'
       }
     ]
+  },
+  {
+    path: 'board',
+    component: BoardsComponent,
+    title: 'board'
   }
 ];
 
