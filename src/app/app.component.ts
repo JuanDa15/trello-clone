@@ -13,7 +13,4 @@ export class AppComponent implements AfterViewInit{
     setTheme('dark');
   }
 
-  changeTheme() {
-    toggleTheme();
-  }
 }
