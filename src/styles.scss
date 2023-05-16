@@ -4,3 +4,7 @@
 @tailwind utilities;
 
 @import '@angular/cdk/overlay-prebuilt.css';
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,21 @@
+<cdk-accordion>
+  <cdk-accordion-item #workspaceItem="cdkAccordionItem" role="button">
+    <button
+      type="button"
+      class="flex w-full flex-row items-center justify-between rounded-md px-2 py-3"
+      [ngClass]="{ 'bg-gray-300 bg-opacity-30': workspaceItem.expanded }"
+      (click)="workspaceItem.toggle()"
+    >
+      <ng-content select="[accordion-header]"></ng-content>
+      <i class="fa-solid fa-chevron-up transition-all"
+         [ngClass]="{'rotate-180': workspaceItem.expanded, 'rotate-0': !workspaceItem.expanded}"></i>
+    </button>
+    <div
+      class="text-gray-600 mt-1 transition-all block overflow-hidden"
+      role="region"
+      [class]="workspaceItem.expanded ? getContentHeightClass() : 'h-0'"
+    >
+      <ng-content select="[accordion-content]"></ng-content>
+    </div>
+  </cdk-accordion-item>
+</cdk-accordion>

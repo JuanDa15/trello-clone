@@ -1,82 +1,97 @@
-<app-navbar>
-</app-navbar>
-<div class="max-w-[1350px] mx-auto h-screen">
-  <aside>
-    <ul>
-      <li><i class="fa-brands fa-trello"></i>Boards</li>
-      <li><i class="fa-solid fa-shapes"></i>Templates</li>
-      <li><i class="fa-solid fa-arrow-trend-up"></i>Home</li>
-    </ul>
-    <p>Workspaces<i class="fa-solid fa-plus"></i></p>
-    <ul>
-      <li>
-        <div><span>N</span> Juan David's workspace <i class="fa-solid fa-chevron-up"></i></div>
-        <ul>
-          <li>
-            <i class="fa-brands fa-trello"></i>Boards
-          </li>
-          <li>
-            <i class="fa-regular fa-heart"></i>Highlights
-          </li>
-          <li>
-            <i class="fa-solid fa-table-cells-large"></i>Views
-          </li>
-          <li>
-            <i class="fa-solid fa-user-group"></i>Members<i class="fa-solid fa-plus"></i>
-          </li>
-          <li>
-            <i class="fa-solid fa-gear"></i>Settings
-          </li>
-        </ul>
+<app-navbar> </app-navbar>
+<div class="container mx-auto flex h-[calc(100vh-70px)] flex-col md:flex-row mt-5">
+  <aside class="p-3 md:min-w-[270px]">
+    <ul class=" text-slate-800">
+      <li
+        class="flex flex-row items-center gap-2 rounded-md px-2 py-2 font-semibold"
+        [ngClass]="{ 'bg-sky-300 bg-opacity-40 text-sky-700': true }"
+      >
+        <i class="fa-brands fa-trello"></i>Boards
+      </li>
+      <li
+        class="flex flex-row items-center gap-2 rounded-md px-2 py-2 font-semibold"
+      >
+        <i class="fa-solid fa-shapes"></i>Templates
+      </li>
+      <li
+        class="flex flex-row items-center gap-2 rounded-md px-2 py-2 font-semibold"
+      >
+        <i class="fa-solid fa-arrow-trend-up"></i>Home
       </li>
     </ul>
+    <p
+      class="mt-2 mb-1 flex flex-row justify-between text-base font-medium text-gray-700"
+    >
+      Workspaces<i class="fa-solid fa-plus"></i>
+    </p>
+    <accordion *ngFor="let accordion of accordionList">
+      <ng-container accordion-header>
+        <p class="flex flex-row gap-1 text-slate-800">
+          <span
+            class="inline-flex h-[25px] w-[25px] justify-center rounded-sm bg-gradient-to-b from-orange-700 to-orange-400 font-black text-white"
+            >{{accordion.initial}}</span
+          >
+          <span class="font-bold">{{accordion.header}}</span>
+        </p>
+      </ng-container>
+      <ng-container accordion-content>
+        <ul #accordionContent>
+          <li *ngFor="let item of accordion.items" class="ml-auto w-[90%] px-2 py-2 cursor-pointer" [ngClass]="{ 'bg-gray-300 bg-opacity-30': true }" role="button">
+            <span class="flex flex-row items-center gap-2">
+              <i [class]="item.icon"></i>{{item.label}}
+            </span>
+          </li>
+        </ul>
+      </ng-container>
+    </accordion>
   </aside>
-  <main>
+  <main class="flex flex-col gap-1 p-2 w-full">
     <section>
-      <div>
-        <i class="fa-regular fa-clock"></i> Recently viewed
-      </div>
-      <ul>
-        <li>
-          Demo
-        </li>
+      <div class="flex flex-row gap-2 items-center py-2 px-2 font-bold"><i class="fa-regular fa-clock text-lg font-medium"></i> Recently viewed</div>
+      <ul class="flex flex-row flex-wrap">
+        <li class="pt-0 min-w-[200px] h-[90px] bg-sky-700 rounded-sm font-bold text-white p-3">Demo</li>
       </ul>
     </section>
 
-    <section>
-      <h2>YOUR WORKSPACES</h2>
+    <section class="mt-20 px-1">
+      <h2 class="font-bold text-gray-600 mb-4">YOUR WORKSPACES</h2>
 
-      <div>
-        <span>N</span> Juan David's workspace <ul>
-          <li>
+      <div class="w-full flex flex-row justify-between">
+        <p class="flex flex-row items-center gap-2">
+          <span class="inline-flex h-[30px] w-[30px] justify-center items-center rounded-sm bg-gradient-to-b from-orange-700 to-orange-400 font-black text-white text-lg">
+            N
+          </span>
+          <span class="text-slate-800 font-bold">
+            Juan David's workspace
+          </span>
+        </p>
+        <ul class="flex flex-row flex-wrap gap-2 text-slate-800">
+          <li class="bg-gray-300 bg-opacity-40 py-1 px-2 rounded-md flex flex-row gap-2 items-center cursor-pointer" role="button">
             <i class="fa-brands fa-trello"></i>Boards
           </li>
-          <li>
+          <li class="bg-gray-300 bg-opacity-40 py-1 px-2 rounded-md flex flex-row gap-2 items-center cursor-pointer" role="button">
             <i class="fa-regular fa-heart"></i>Highlights
           </li>
-          <li>
+          <li class="bg-gray-300 bg-opacity-40 py-1 px-2 rounded-md flex flex-row gap-2 items-center cursor-pointer" role="button">
             <i class="fa-solid fa-table-cells-large"></i>Views
           </li>
-          <li>
+          <li class="bg-gray-300 bg-opacity-40 py-1 px-2 rounded-md flex flex-row gap-2 items-center cursor-pointer" role="button">
             <i class="fa-solid fa-user-group"></i>Members (1)
           </li>
-          <li>
+          <li class="bg-gray-300 bg-opacity-40 py-1 px-2 rounded-md flex flex-row gap-2 items-center cursor-pointer" role="button">
             <i class="fa-solid fa-gear"></i>Settings
           </li>
-          <li>
+          <li class="bg-gray-300 bg-opacity-40 py-1 px-2 rounded-md flex flex-row gap-2 items-center cursor-pointer" role="button"
+              [ngClass]="{'bg-purple-300 bg-opacity-30 text-purple-900': true}">
             <i class="fa-solid fa-briefcase"></i>Settings
           </li>
         </ul>
       </div>
-      <ul>
-        <li>
-          Demo
-        </li>
-        <li>
-          Create new board
-        </li>
+      <ul class="mt-4 flex flex-row flex-wrap gap-2">
+        <li class="min-w-[200px] h-[90px] bg-sky-700 rounded-sm font-bold text-white p-3">Demo</li>
+        <li class="min-w-[200px] h-[90px] bg-gray-300 bg-opacity-30 grid place-content-center font-semibold rounder-sm">Create new board</li>
       </ul>
-      <button type="button">View all closed tabs</button>
     </section>
+    <button type="button" class="mt-20 bg-gray-300 bg-opacity-40 py-1 px-3 rounded-md flex flex-row gap-2 items-center font-medium w-fit">View all closed tabs</button>
   </main>
 </div>
