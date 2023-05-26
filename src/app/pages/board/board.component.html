@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+<!-- Que se puedan ordenar dentro del mismo componente -->
 <div
   class="flex h-[58px] w-full flex-row justify-between bg-gradient-to-b from-[hsla(208,59.5%,33.9%,0.9)] to-[#0000003d]"
 >
@@ -137,10 +138,8 @@
         </svg>
       </button>
     </div>
-    <ul class="flex flex-col gap-2">
-      <li cdkDrag class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">Task 1</li>
-      <li cdkDrag class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">Task 2</li>
-      <li cdkDrag class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">Task 3</li>
+    <ul cdkDropList class="flex flex-col gap-2" (cdkDropListDropped)="droppedItem($event, tasks)">
+      <li *ngFor="let task of tasks" cdkDrag class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">{{task.description}}</li>
     </ul>
     <div class="flex flex-row justify-between items-center mt-3">
       <button type="button" class="flex flex-row gap-2 h-10 shrink-0 grow items-center rounded-sm bg-transparent px-3 text-sm font-medium text-gray-600 transition-all duration-300 hover:bg-white hover:text-slate-800" >
@@ -176,10 +175,8 @@
         </svg>
       </button>
     </div>
-    <ul class="flex flex-col gap-2">
-      <li class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">Task 1</li>
-      <li class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">Task 2</li>
-      <li class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">Task 3</li>
+    <ul cdkDropList class="flex flex-col gap-2" (cdkDropListDropped)="droppedItem($event, inProgressTask)">
+      <li *ngFor="let task of inProgressTask" cdkDrag class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">{{task.description}}</li>
     </ul>
     <div class="flex flex-row justify-between items-center mt-3">
       <button type="button" class="flex flex-row gap-2 h-10 shrink-0 grow items-center rounded-sm bg-transparent px-3 text-sm font-medium text-gray-600 transition-all duration-300 hover:bg-white hover:text-slate-800" >
@@ -215,10 +212,8 @@
         </svg>
       </button>
     </div>
-    <ul class="flex flex-col gap-2">
-      <li class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">Task 1</li>
-      <li class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">Task 2</li>
-      <li class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">Task 3</li>
+    <ul cdkDropList class="flex flex-col gap-2" (cdkDropListDropped)="droppedItem($event, doneTask)">
+      <li *ngFor="let task of doneTask" cdkDrag class="px-4 py-2 border-[1px] border-slate-200 rounded-md bg-white shadow-sm">{{task.description}}</li>
     </ul>
     <div class="flex flex-row justify-between items-center mt-3">
       <button type="button" class="flex flex-row gap-2 h-10 shrink-0 grow items-center rounded-sm bg-transparent px-3 text-sm font-medium text-gray-600 transition-all duration-300 hover:bg-white hover:text-slate-800" >
