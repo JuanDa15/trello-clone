@@ -12,6 +12,8 @@ import { CdkAccordionModule } from "@angular/cdk/accordion";
 import { AccordionComponent } from './components/accordion/accordion.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { BoardComponent } from './pages/board/board.component';
+import {DialogModule} from '@angular/cdk/dialog';
+import { TaskModalComponent } from './components/task-modal/task-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +23,16 @@ import { BoardComponent } from './pages/board/board.component';
     BoardsComponent,
     NavbarComponent,
     AccordionComponent,
-    BoardComponent
+    BoardComponent,
+    TaskModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     OverlayModule,
     CdkAccordionModule,
-    DragDropModule
+    DragDropModule,
+    DialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

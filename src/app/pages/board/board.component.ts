@@ -1,5 +1,8 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { Dialog } from '@angular/cdk/dialog';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, inject } from '@angular/core';
+import { TaskModalComponent } from 'src/app/components/task-modal/task-modal.component';
+import { Column } from 'src/app/interface/column.interface';
 import { Task } from 'src/app/interface/task.interface';
 
 @Component({
@@ -18,59 +21,106 @@ import { Task } from 'src/app/interface/task.interface';
   `]
 })
 export class BoardComponent {
-  public tasks: Task[] = [
+  public dialogBuilder = inject(Dialog);
+  public columns: Column[] = [
     {
       id: 1,
-      description: 'Task 1'
+      columnName: 'Task',
+      tasks: [
+        {
+          id: 1,
+          description: 'Task 1'
+        },
+        {
+          id: 2,
+          description: 'Task 2'
+        },    {
+          id: 3,
+          description: 'Task 3'
+        },
+        {
+          id: 4,
+          description: 'Task 4'
+        }
+      ]
     },
-    {
-      id: 2,
-      description: 'Task 2'
-    },    {
-      id: 3,
-      description: 'Task 3'
-    },
-    {
-      id: 4,
-      description: 'Task 4'
-    }
-  ];
-  public inProgressTask: Task[] = [
     {
       id: 1,
-      description: 'Task 1'
+      columnName: 'In progress',
+      tasks: [
+        {
+          id: 1,
+          description: 'Task 1'
+        },
+        {
+          id: 2,
+          description: 'Task 2'
+        },    {
+          id: 3,
+          description: 'Task 3'
+        },
+        {
+          id: 4,
+          description: 'Task 4'
+        }
+      ]
     },
-    {
-      id: 2,
-      description: 'Task 2'
-    },    {
-      id: 3,
-      description: 'Task 3'
-    },
-    {
-      id: 4,
-      description: 'Task 4'
-    }
-  ];
-  public doneTask: Task[] = [
     {
       id: 1,
-      description: 'Task 1'
-    },
-    {
-      id: 2,
-      description: 'Task 2'
-    },    {
-      id: 3,
-      description: 'Task 3'
-    },
-    {
-      id: 4,
-      description: 'Task 4'
+      columnName: 'Done',
+      tasks: [
+        {
+          id: 1,
+          description: 'Task 1'
+        },
+        {
+          id: 2,
+          description: 'Task 2'
+        },    {
+          id: 3,
+          description: 'Task 3'
+        },
+        {
+          id: 4,
+          description: 'Task 4'
+        }
+      ]
     }
   ];
 
-  public droppedItem(event: CdkDragDrop<Task[]>, array: Task[]) {
-    moveItemInArray(array, event.currentIndex, event.previousIndex)
+
+  public droppedItem(event: CdkDragDrop<Task[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.currentIndex, event.previousIndex)
+    } else {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex)
+    }
+  }
+
+  public droppedItemColumn(event: CdkDragDrop<Column[]>) {
+    console.log(event)
+    moveItemInArray(event.container.data, event.currentIndex, event.previousIndex)
+  }
+
+  public addColumn() {
+    this.columns.push({
+      id: 4,
+      columnName: 'QA',
+      tasks: []
+    })
+  }
+
+  public openTask( task: Task ) {
+    const ref = this.dialogBuilder.open(TaskModalComponent, {
+      maxWidth: '50%',
+      minWidth: '400px',
+      data: task
+    })
+
+    ref.closed.subscribe({
+      next: (val) => {
+        console.log(val)
+      }
+    })
   }
 }
