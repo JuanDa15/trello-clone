@@ -14,6 +14,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { BoardComponent } from './pages/board/board.component';
 import {DialogModule} from '@angular/cdk/dialog';
 import { TaskModalComponent } from './components/task-modal/task-modal.component';
+import { ScrollComponent } from './pages/scroll/scroll.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -24,15 +27,18 @@ import { TaskModalComponent } from './components/task-modal/task-modal.component
     NavbarComponent,
     AccordionComponent,
     BoardComponent,
-    TaskModalComponent
+    TaskModalComponent,
+    ScrollComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     OverlayModule,
     CdkAccordionModule,
     DragDropModule,
     DialogModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

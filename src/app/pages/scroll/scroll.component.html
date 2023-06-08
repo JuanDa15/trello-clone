@@ -1,0 +1,29 @@
+<app-navbar> </app-navbar>
+<section class="flex h-[calc(100vh-45px)] bg-slate-800 text-white justify-center gap-4 p-4">
+  <div class="w-1/2 bg-slate-700 rounded-sm p-4">
+    <h3 class="text-center font-semibold">Scroll (normal)</h3>
+    <hr class="my-2">
+    <div class="h-72 bg-slate-600 overflow-y-auto">
+      <div *ngFor="let item of productsService.products$ | async" class="flex items-center space-x-4">
+        <img class="w-10 h-10 rounded-full" [src]="item.images[0]" [alt]="item.title" width="40" height="40">
+        <div class="font-medium dark:text-white">
+            <div>{{item.title}}</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Updated:  {{item.updatedAt | date}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-1/2 bg-slate-700 rounded-sm p-4">
+    <h3 class="text-center font-semibold">Scroll (Virtual)</h3>
+    <hr class="my-2">
+    <cdk-virtual-scroll-viewport itemSize="44" class="h-72 bg-slate-600">
+      <div *cdkVirtualFor="let item of productsService.products$ | async" class="flex items-center space-x-4">
+        <img class="w-10 h-10 rounded-full" [src]="item.images[0]" [alt]="item.title" width="40" height="40">
+        <div class="font-medium dark:text-white">
+            <div>{{item.title}}</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Updated:  {{item.updatedAt | date}}</div>
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</section>
