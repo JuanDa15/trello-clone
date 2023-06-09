@@ -17,6 +17,9 @@ import { TaskModalComponent } from './components/task-modal/task-modal.component
 import { ScrollComponent } from './pages/scroll/scroll.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkTableModule } from '@angular/cdk/table';
+import { TableComponent } from './pages/table/table.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     AccordionComponent,
     BoardComponent,
     TaskModalComponent,
-    ScrollComponent
+    ScrollComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,9 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     CdkAccordionModule,
     DragDropModule,
     DialogModule,
-    ScrollingModule
+    ScrollingModule,
+    CdkTableModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

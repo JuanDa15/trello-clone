@@ -1,0 +1,47 @@
+<app-navbar> </app-navbar>
+<section class="flex flex-col min-h-[calc(100vh-45px)] bg-slate-800 text-white justify-center gap-4 p-4">
+  <h1 class="font-semibold text-trello-primary text-2xl text-center">Products list</h1>
+  <div class="flex">
+    <input type="search" [formControl]="search"  class="text-black">
+    <select [formControl]="searchParam" class="text-black">
+      <option value="id" selected>ID</option>
+      <option value="title">Title</option>
+      <option value="price">Price</option>
+    </select>
+  </div>
+  <table class="w-full border-[1px] border-slate-400 rounded-sm" cdk-table [dataSource]="data">
+    <tr cdk-header-row *cdkHeaderRowDef="columns" class="text-sm font-semibold uppercase bg-slate-700"></tr>
+    <tr cdk-row *cdkRowDef="let row;columns: columns"></tr>
+
+    <ng-container cdkColumnDef="Image">
+      <th cdk-header-cell *cdkHeaderCellDef class="py-3"></th>
+      <td cdk-cell *cdkCellDef="let product" class="py-4 px-6">
+        <img class="rounded-sm" [src]="product.images[0]" [alt]="product.title" width="48" height="48">
+      </td>
+    </ng-container>
+   
+    <ng-container cdkColumnDef="ID">
+      <th cdk-header-cell *cdkHeaderCellDef class="py-3">ID</th>
+      <td cdk-cell *cdkCellDef="let product" class="py-4 px-6">{{product.id}}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Title">
+      <th cdk-header-cell *cdkHeaderCellDef class="py-3">Product name</th>
+      <td cdk-cell *cdkCellDef="let product" class="py-4 px-6">{{product.title}}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Price">
+      <th cdk-header-cell *cdkHeaderCellDef class="py-3">Price</th>
+      <td cdk-cell *cdkCellDef="let product" class="py-4 px-6">{{product.price | currency}}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Actions">
+      <th cdk-header-cell *cdkHeaderCellDef class="py-3">Actions</th>
+      <td cdk-cell *cdkCellDef="let product" class="py-4 px-6">
+        <button type="button" class="border-[1px] px-3 py-2 rounded-sm" (click)="update(product)">
+          Update
+        </button>
+      </td>
+    </ng-container>
+  </table>
+</section>
